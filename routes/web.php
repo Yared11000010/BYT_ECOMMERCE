@@ -34,6 +34,8 @@ Route::prefix('admin')->group(function(){
 
     Route::get('dashbaord',[DashboardController::class,'index'])->name('maindashboard');
 
-    Route::get('section',[SectionController::class,'addsection'])->name('add_section');
+    Route::get('section/add',[SectionController::class,'addsection'])->name('add_section');
+    Route::get('section/all',[SectionController::class,'index'])->name('all_sections');
+    Route::get('section/edit',[SectionController::class,'edit'])->name('edit_sections');
 
 });

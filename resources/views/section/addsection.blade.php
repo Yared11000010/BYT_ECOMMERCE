@@ -19,7 +19,7 @@
                     <a class="nav-link active" href=""><i class="fa fa-list mr-2"></i>Add Section</a>
                   </li>
                     <li class="nav-item border-none">
-                    <a class="nav-link bg-light " href=""><i class=" fas fa-plus"></i>All Sections</a>
+                    <a class="nav-link bg-light " href="{{ route('all_sections') }}"><i class=" fas fa-plus"></i>All Sections</a>
                   </li>
                  </ul>
                  {{-- @if($errors->any())
