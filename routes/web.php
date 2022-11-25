@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +33,7 @@ Route::middleware([
 Route::prefix('admin')->group(function(){
 
     Route::get('dashbaord',[DashboardController::class,'index'])->name('maindashboard');
+
+    Route::get('section',[SectionController::class,'addsection'])->name('add_section');
 
 });
