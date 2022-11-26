@@ -23,7 +23,7 @@
       <link href="{{asset('backend/css/remixicon.css')}}" rel="stylesheet">
       <link href="{{asset('backend/css/simple-datatables.css')}}" rel="stylesheet">
       <link href="{{asset('backend/css/style.css')}}" rel="stylesheet">
-    
+      @notifyCss
 
    </head>
    <body>
@@ -46,9 +46,9 @@
             <script src="{{asset('backend/js/main.js')}}"></script> 
             <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
             @yield('jquery')
-
+            @notifyJs
             //add this into main layouts
            @yield('script')
-           
+          
    </body>
 </html>

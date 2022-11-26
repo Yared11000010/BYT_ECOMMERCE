@@ -29,6 +29,7 @@ class SectionController extends Controller
         $section->status=$request->status==true?'1':'0';
         $section->save();
 
+        notify()->success('Section is Added !');
         return redirect('admin/section/all');
     }
 
@@ -46,6 +47,7 @@ class SectionController extends Controller
         $section->status=$request->status==true?'1':'0';
         $section->update();
 
+        notify()->warning('Section is Updated !','Updated');
         return redirect('admin/section/all');
 
     }
@@ -53,6 +55,9 @@ class SectionController extends Controller
     public function destroy($section_id){
            $section=Section::find($section_id);
            $section->delete();
+            
+           notify()->warning('Section is Deleted !','Deleted');
            return redirect('admin/section/all');
+          
     }
 }
