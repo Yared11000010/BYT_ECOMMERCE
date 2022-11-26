@@ -30,18 +30,19 @@
                  </div> --}}
                     
                  {{-- @endif --}} 
-                 <form method="POST" action="" class="row g-3" enctype="multipart/form-data">
+                 <form method="POST" action="{{ url('admin/section/'.$section->id) }}" class="row g-3" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="col-md-8 ">
                        <label for="name" class="form-label">Section Name</label>
-                        <input type="text" name="title" class="form-control" >
+                        <input type="text" name="name" class="form-control" value="{{ $section->name }}" >
                         @error('title')
                             <small class=" text-danger">{{ $message }}</small><br>
                         @enderror
                     </div>
                     <div class=" pb-3 col-md-6  custom-control custom-checkbox pt-2">
                     <label class="custom-control-label" for="status">Status</label><br>
-                    <input type="checkbox" class="custom-control-input form-control" id="status" style="width:25px; height:25px" name="status">
+                    <input type="checkbox" class="custom-control-input form-control" id="status" style="width:25px; height:25px" {{ $section->status=='1'?'checked':'' }} name="status">
                     </div>
                     <div class="col-md-8 pb-3 pr-3 ">
                     <button type="submit" class=" col-md-4 btn btn-primary pr-5 pt-2 shadow pb-2">Update</button>

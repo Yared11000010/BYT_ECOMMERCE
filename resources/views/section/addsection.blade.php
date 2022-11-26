@@ -30,12 +30,12 @@
                  </div> --}}
                     
                  {{-- @endif --}} 
-                 <form method="POST" action="" class="row g-3" enctype="multipart/form-data">
+                 <form method="POST" action="{{ url('admin/store') }}" class="row g-3" enctype="multipart/form-data">
                     @csrf
                     <div class="col-md-8 ">
                        <label for="name" class="form-label">Section Name</label>
-                        <input type="text" name="title" class="form-control" >
-                        @error('title')
+                        <input type="text" name="name" class="form-control" >
+                        @error('name')
                             <small class=" text-danger">{{ $message }}</small><br>
                         @enderror
                     </div>

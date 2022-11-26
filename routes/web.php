@@ -33,9 +33,15 @@ Route::middleware([
 Route::prefix('admin')->group(function(){
 
     Route::get('dashbaord',[DashboardController::class,'index'])->name('maindashboard');
+    //Routing for Product Section 
 
     Route::get('section/add',[SectionController::class,'addsection'])->name('add_section');
     Route::get('section/all',[SectionController::class,'index'])->name('all_sections');
-    Route::get('section/edit',[SectionController::class,'edit'])->name('edit_sections');
+    Route::get('section/{section_id}/edit',[SectionController::class,'edit'])->name('edit_sections');
+    Route::post('store',[SectionController::class,'store'])->name('store_section');
+    Route::put('section/{section_id}',[SectionController::class,'update'])->name('update');
+    Route::get('section/delete/{section_id}',[SectionController::class,'destroy'])->name('destroy');
+    //Routing for product Brand
+
 
 });

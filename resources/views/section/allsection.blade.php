@@ -35,17 +35,25 @@
                      </tr>
                   </thead>
                   <tbody>
+                     @foreach ($allsection as $k => $section)
                      <tr>
-                        <td>1</td>
-                        <td>Women</td>
+                       
+                        <td>{{ $section->id }}</td>
+                        <td>{{ $section->name }}</td>
                         <td>
-                         <a href=""><span style="border-radius: 0.2rem;padding-left:3px;padding-right:3px"  class=" bg-danger text-white    active-btn">Inactive</span></a>
+                        @if($section->status==0)
+                              <a href=""><span style="border-radius: 0.2rem;padding-left:3px;padding-right:3px"  class=" bg-danger text-white    active-btn">Inactive</span></a>
+                        @elseif ($section->status==1)
+                              <a href=""><span style="border-radius: 0.2rem;padding-left:3px;padding-right:3px"  class=" bg-success  text-white    active-btn">Active</span></a>
+                         @endif
                         </td>
                         <td>
-                         <a href="{{ route('edit_sections') }}" class=" btn btn-warning btn-sm">Edit</a>
-                         <a href="" onclick="return confirm('Are you sure,you want to delete this Slider ?? ') " class="btn btn-danger btn-sm" >Delete</a>
+                         <a href="{{ url('admin/section/'.$section->id.'/edit')}}" class=" btn btn-warning btn-sm">Edit</a>
+                         <a href="{{ url('admin/section/delete/'.$section->id) }}" onclick="return confirm('Are you sure,you want to delete this Slider ?? ') " class="btn btn-danger btn-sm" >Delete</a>
                         </td>
-               
+                       
+                     </tr>
+                     @endforeach
                   </tbody>
                </table>
                <div class=" pagination-sm">
