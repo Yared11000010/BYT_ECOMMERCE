@@ -55,9 +55,28 @@ class SectionController extends Controller
     public function destroy($section_id){
            $section=Section::find($section_id);
            $section->delete();
-            
            notify()->warning('Section is Deleted !','Deleted');
            return redirect('admin/section/all');
           
+    }
+
+    public function active($section_id){
+
+        $section=Section::find($section_id);
+        $section->status=1;
+        $section->update();
+        notify()->warning('Section Status is !','Inactive');
+       
+        return redirect('admin/section/all');
+
+    }
+    public function inactive($section_id){
+
+        $section=Section::find($section_id);
+        $section->status=0;
+        $section->update();
+        notify()->success('Section Status is !','Active');
+        return redirect('admin/section/all');
+
     }
 }

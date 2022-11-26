@@ -41,6 +41,10 @@ Route::prefix('admin')->group(function(){
     Route::post('store',[SectionController::class,'store'])->name('store_section');
     Route::put('section/{section_id}',[SectionController::class,'update'])->name('update');
     Route::get('section/delete/{section_id}',[SectionController::class,'destroy'])->name('destroy');
+    //Routing for active and inactive product section 
+    Route::get('active/section/{section_id}',[SectionController::class,'active'])->name('active_section');
+    Route::get('inactive/section/{section_id}',[SectionController::class,'inactive'])->name('inactive_section');
+
     //Routing for product Brand
 
 

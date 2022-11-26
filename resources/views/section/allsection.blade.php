@@ -41,10 +41,10 @@
                         <td>{{ $section->id }}</td>
                         <td>{{ $section->name }}</td>
                         <td>
-                        @if($section->status==0)
-                              <a href=""><span style="border-radius: 0.2rem;padding-left:3px;padding-right:3px"  class=" bg-danger text-white    active-btn">Inactive</span></a>
-                        @elseif ($section->status==1)
-                              <a href=""><span style="border-radius: 0.2rem;padding-left:3px;padding-right:3px"  class=" bg-success  text-white    active-btn">Active</span></a>
+                        @if($section->status==1)
+                              <a href="{{ url('admin/inactive/section/'.$section->id) }}"><span style="border-radius: 0.2rem;padding-left:3px;padding-right:3px"  class=" bg-danger text-white    active-btn">Inactive</span></a>
+                        @elseif ($section->status==0)
+                              <a href="{{ url('admin/active/section/'.$section->id) }}"><span style="border-radius: 0.2rem;padding-left:3px;padding-right:3px"  class=" bg-success  text-white    active-btn">Active</span></a>
                          @endif
                         </td>
                         <td>
