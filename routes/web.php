@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Requests\CategoryFormRequest;
 use Illuminate\Support\Facades\Route;
 
 
@@ -45,7 +48,16 @@ Route::prefix('admin')->group(function(){
     Route::get('active/section/{section_id}',[SectionController::class,'active'])->name('active_section');
     Route::get('inactive/section/{section_id}',[SectionController::class,'inactive'])->name('inactive_section');
 
-    //Routing for product Brand
+    //Routing for product Categories
+    Route::get('categories',[CategoriesController::class,'index'])->name('categories');
+    Route::get('categories/add',[CategoriesController::class,'create'])->name('add_categories');  
+    Route::post('categories/store',[CategoriesController::class,'store'])->name('store_categories');
 
-
+    //routing for groups
+    Route::get('groups',[GroupController::class,'index'])->name('groups');
+    Route::get('groups/{group_id}/edit',[GroupController::class,'edit'])->name('edit_group');
+    Route::get('groups/delete/{group_id}',[GroupController::class,'destory'])->name('group_destory');
+    Route::get('groups/add',[GroupController::class,'create'])->name('add_group');
+    Route::post('groups/store',[GroupController::class,'store'])->name('store_group');
+    Route::put('group/{group_id}/update',[GroupController::class,'update'])->name('update_group');
 });
