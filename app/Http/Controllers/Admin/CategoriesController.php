@@ -139,8 +139,10 @@ class CategoriesController extends Controller
     }
 
     public function destory($categoires_id){
-
         $categories=Category::find($categoires_id);
+        if($categories->image){
+            Storage::delete('public/category/'.$categories->image);
+        }
         $categories->delete();
 
         notify()->warning('Category is Deleted !');
@@ -152,7 +154,7 @@ class CategoriesController extends Controller
         $category=Category::find($categoires_id);
         $category->status=1;
         $category->update();
-        notify()->warning('Section Status is !','Inactive');
+        notify()->warning('Category Status is !','Inactive');
        
         return redirect('admin/categories');
     }
@@ -161,7 +163,7 @@ class CategoriesController extends Controller
         $category=Category::find($categoires_id);
         $category->status=0;
         $category->update();
-        notify()->success('Section Status is !','Active');
+        notify()->success('Category Status is !','Active');
         return redirect('admin/categories');
     }
 }

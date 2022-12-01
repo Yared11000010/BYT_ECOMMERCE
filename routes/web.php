@@ -3,8 +3,10 @@
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\SectionController;
+use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Requests\CategoryFormRequest;
+use App\Models\SubCategory;
 use Illuminate\Support\Facades\Route;
 
 
@@ -58,7 +60,18 @@ Route::prefix('admin')->group(function(){
 
     Route::get('active/category/{categories_id}',[CategoriesController::class,'active'])->name('active_category');
     Route::get('inactive/category/{categories_id}',[CategoriesController::class,'inactive'])->name('inactive_category');
+    
+    //Routing for Sub_category
 
+    Route::get('subcategories',[SubCategoryController::class,'index'])->name('sub_categories');
+    Route::get('subcategories/create',[SubCategoryController::class,'create'])->name('create_subcategory');
+    Route::post('subcategories/store',[SubCategoryController::class,'store'])->name('store_subcategory');
+    Route::get('subcategories/{subcategory_id}',[SubCategoryController::class,'destory'])->name('delete_subcategory');
+    Route::get('subcategories/{subcategory_id}/edit',[SubCategoryController::class,'edit'])->name('edit_subcategory');
+    Route::put('subcategories/update',[SubCategoryController::class,'update'])->name('update_subcategory');
+
+    Route::get('active/subcategory/{subcategory_id}',[SubCategoryController::class,'active'])->name('active_subcategory');
+    Route::get('inactive/subcategory/{subcategory_id}',[SubCategoryController::class,'inactive'])->name('inactive_subcategory');
 
     //routing for groups
     Route::get('groups',[GroupController::class,'index'])->name('groups');

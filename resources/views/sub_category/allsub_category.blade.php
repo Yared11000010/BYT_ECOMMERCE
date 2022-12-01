@@ -4,8 +4,8 @@
    <nav>
       <ol class="breadcrumb p-3">
          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-         <li class="breadcrumb-item">Category</li>
-         <li class="breadcrumb-item active">All Categories</li>
+         <li class="breadcrumb-item">Sub_Category/li>
+         <li class="breadcrumb-item active">All Sub_Categories</li>
       </ol>
    </nav>
  </div>
@@ -17,10 +17,10 @@
                <h5 class="card-title">Categories Data</h5>
                <ul class="nav nav-tabs pb-4 align-items-end card-header-tabs w-100">
                 <li class="nav-item">
-                  <a class="nav-link active" href=""><i class="fa fa-list mr-2"></i>All Categories</a>
+                  <a class="nav-link active" href=""><i class="fa fa-list mr-2"></i>All Sub_Categories</a>
                 </li>
                   <li class="nav-item border-none">
-                  <a class="nav-link bg-light" href="{{ route('add_categories') }}"><i class=" fas fa-plus"></i>Add Category</a>
+                  <a class="nav-link bg-light" href="{{ route('create_subcategory') }}"><i class=" fas fa-plus"></i>Add Sub_Category</a>
                 </li>
                </ul>
              
@@ -28,32 +28,32 @@
                   <thead>
                      <tr>
                         <th scope="col">Num</th>
-                        <th scope="col">Group </th>
                         <th scope="col">Category</th>
-                        <th scope="col">Discount</th>
+                        <th scope="col">Sub Category</th>
+                        <th scope="col">Description</th>
                         <th scope="col">Image</th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
                      </tr>
                   </thead>
                   <tbody>
-                     @foreach ($categories as $k => $category)
+                     @foreach ($subcategory as $k => $category)
                      <tr>
                         <td>{{ $k++ }}</td>
-                        <td>{{ $category->group->name }}</td>
+                        <td>{{ $category->category->name }}</td>
                         <td>{{ $category->name }}</td>
-                        <td>{{ $category->discount }}</td>
-                        <td><img src="{{ asset('/storage/category/'.$category->image) }}" style="width: 50px; height:50px" alt=""></td>
+                        <td>{{ $category->description }}</td>
+                        <td><img src="{{ asset('/storage/subcategory/'.$category->image) }}" style="width: 50px; height:50px" alt=""></td>
                         <td>
                         @if($category->status==1)
-                              <a href="{{ url('admin/inactive/category/'.$category->id) }}"><span style="border-radius: 0.2rem;padding-left:3px;padding-right:3px"  class=" bg-success text-white    active-btn">Active</span></a>
+                              <a href="{{ url('admin/inactive/subcategory/'.$category->id) }}"><span style="border-radius: 0.2rem;padding-left:3px;padding-right:3px"  class=" bg-success text-white    active-btn">Active</span></a>
                         @elseif ($category->status==0)
-                              <a href="{{ url('admin/active/category/'.$category->id) }}"><span style="border-radius: 0.2rem;padding-left:3px;padding-right:3px"  class=" bg-danger  text-white    active-btn">Inactive</span></a>
+                              <a href="{{ url('admin/active/subcategory/'.$category->id) }}"><span style="border-radius: 0.2rem;padding-left:3px;padding-right:3px"  class=" bg-danger  text-white    active-btn">Inactive</span></a>
                          @endif
                         </td>
                         <td>
-                         <a href="{{ url('admin/categories/'.$category->id.'/edit') }}" class=" btn btn-warning btn-sm">Edit</a>
-                         <a href="{{ url('admin/categories/'.$category->id.'/delete') }}" onclick="return confirm('Are you sure,you want to delete this Slider ?? ') " class="btn btn-danger btn-sm" >Delete</a>
+                         <a href="{{ url('admin/subcategories/'.$category->id.'/edit') }}" class=" btn btn-warning btn-sm">Edit</a>
+                         <a href="{{ url('admin/subcategories/'.$category->id) }}" onclick="return confirm('Are you sure,you want to delete this Slider ?? ') " class="btn btn-danger btn-sm" >Delete</a>
                         </td>
                      </tr>
                      @endforeach

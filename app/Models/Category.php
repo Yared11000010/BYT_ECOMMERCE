@@ -21,4 +21,9 @@ class Category extends Model
         'meta_keywords',
         'status'
     ];
+
+    public function group(){
+
+        return $this->belongsTo(Group::class,'group_id','id');
+    }
 }
