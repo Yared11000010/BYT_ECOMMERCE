@@ -52,6 +52,13 @@ Route::prefix('admin')->group(function(){
     Route::get('categories',[CategoriesController::class,'index'])->name('categories');
     Route::get('categories/add',[CategoriesController::class,'create'])->name('add_categories');  
     Route::post('categories/store',[CategoriesController::class,'store'])->name('store_categories');
+    Route::get('categories/{categoires_id}/edit',[CategoriesController::class,'edit'])->name('edit_categories');
+    Route::get('categories/{categoires_id}/delete',[CategoriesController::class,'destory'])->name('delete_categories');
+    Route::put('categories/update',[CategoriesController::class,'update'])->name('upate_categories');
+
+    Route::get('active/category/{categories_id}',[CategoriesController::class,'active'])->name('active_category');
+    Route::get('inactive/category/{categories_id}',[CategoriesController::class,'inactive'])->name('inactive_category');
+
 
     //routing for groups
     Route::get('groups',[GroupController::class,'index'])->name('groups');

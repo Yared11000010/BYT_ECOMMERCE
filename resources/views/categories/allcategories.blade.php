@@ -30,6 +30,7 @@
                         <th scope="col">Category ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Discount</th>
+                        <th scope="col">Image</th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
                      </tr>
@@ -40,19 +41,18 @@
                         <td>{{ $category->id }}</td>
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->discount }}</td>
-
+                        <td><img src="{{ asset('/storage/category/'.$category->image) }}" style="width: 50px; height:50px" alt=""></td>
                         <td>
                         @if($category->status==1)
-                              <a href=""><span style="border-radius: 0.2rem;padding-left:3px;padding-right:3px"  class=" bg-danger text-white    active-btn">Inactive</span></a>
+                              <a href="{{ url('admin/inactive/category/'.$category->id) }}"><span style="border-radius: 0.2rem;padding-left:3px;padding-right:3px"  class=" bg-success text-white    active-btn">Active</span></a>
                         @elseif ($category->status==0)
-                              <a href=""><span style="border-radius: 0.2rem;padding-left:3px;padding-right:3px"  class=" bg-success  text-white    active-btn">Active</span></a>
+                              <a href="{{ url('admin/active/category/'.$category->id) }}"><span style="border-radius: 0.2rem;padding-left:3px;padding-right:3px"  class=" bg-danger  text-white    active-btn">Inactive</span></a>
                          @endif
                         </td>
                         <td>
-                         <a href="" class=" btn btn-warning btn-sm">Edit</a>
-                         <a href="" onclick="return confirm('Are you sure,you want to delete this Slider ?? ') " class="btn btn-danger btn-sm" >Delete</a>
+                         <a href="{{ url('admin/categories/'.$category->id.'/edit') }}" class=" btn btn-warning btn-sm">Edit</a>
+                         <a href="{{ url('admin/categories/'.$category->id.'/delete') }}" onclick="return confirm('Are you sure,you want to delete this Slider ?? ') " class="btn btn-danger btn-sm" >Delete</a>
                         </td>
-                       
                      </tr>
                      @endforeach
                   </tbody>
