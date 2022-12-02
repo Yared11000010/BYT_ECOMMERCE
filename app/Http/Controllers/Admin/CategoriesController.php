@@ -88,7 +88,6 @@ class CategoriesController extends Controller
             'meta_keywords'=>'required|string',
             'meta_title'=>'required|string',
             'status'=>'nullable',
-            'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:1999'
         ]);
         
             $category=Category::find($request->input('id'));
@@ -117,10 +116,12 @@ class CategoriesController extends Controller
             if ($category->image) {
                 Storage::delete('public/category/'.$category->image);
               }
+
+              $category->image=$fileNameToStore;
     
            }
 
-        $category->image=$fileNameToStore;
+        
        
         $category->update();
 

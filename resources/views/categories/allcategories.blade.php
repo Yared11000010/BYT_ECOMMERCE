@@ -40,7 +40,7 @@
                      @foreach ($categories as $k => $category)
                      <tr>
                         <td>{{ $k++ }}</td>
-                        <td>{{ $category->group->name }}</td>
+                        <td>{{ $category->group['name'] }}</td>
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->discount }}</td>
                         <td><img src="{{ asset('/storage/category/'.$category->image) }}" style="width: 50px; height:50px" alt=""></td>

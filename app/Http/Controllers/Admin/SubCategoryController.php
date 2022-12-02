@@ -76,7 +76,6 @@ class SubCategoryController extends Controller
             'name'=>'required|string',
             'description'=>'required|string',
             'status'=>'nullable',
-            'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:1999'
         ]);
 
         $subcategory=SubCategory::find($request->input('id'));
@@ -102,6 +101,7 @@ class SubCategoryController extends Controller
               }
     
            }
+           
        
         $subcategory->image=$fileNameToStore;
 
