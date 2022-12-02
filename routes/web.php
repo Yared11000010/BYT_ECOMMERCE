@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Requests\CategoryFormRequest;
+use App\Models\Brand;
 use App\Models\SubCategory;
 use Illuminate\Support\Facades\Route;
 
@@ -62,7 +64,6 @@ Route::prefix('admin')->group(function(){
     Route::get('inactive/category/{categories_id}',[CategoriesController::class,'inactive'])->name('inactive_category');
     
     //Routing for Sub_category
-
     Route::get('subcategories',[SubCategoryController::class,'index'])->name('sub_categories');
     Route::get('subcategories/create',[SubCategoryController::class,'create'])->name('create_subcategory');
     Route::post('subcategories/store',[SubCategoryController::class,'store'])->name('store_subcategory');
@@ -80,4 +81,19 @@ Route::prefix('admin')->group(function(){
     Route::get('groups/add',[GroupController::class,'create'])->name('add_group');
     Route::post('groups/store',[GroupController::class,'store'])->name('store_group');
     Route::put('group/{group_id}/update',[GroupController::class,'update'])->name('update_group');
+
+    //routing for brands
+
+
+    Route::get('brands',[BrandController::class,'index'])->name('brands');
+    Route::get('brands/add',[BrandController::class,'create'])->name('add_brand');
+    Route::get('brands/{brand_id}/edit',[BrandController::class,'edit'])->name('edit_brand');
+    Route::post('brands/store',[BrandController::class,'store'])->name('store_brand');
+    Route::put('brands/update',[BrandController::class,'update'])->name('update_brand');
+    Route::get('barnds/{brand_id}/delete',[BrandController::class,'destory'])->name('delete_brand');
+
+    Route::get('active/brands/{brand_id}',[BrandController::class,'active'])->name('active_brands');
+    Route::get('inactive/brands/{brand_id}',[BrandController::class,'inactive'])->name('inactive_brands');
+
+    
 });
