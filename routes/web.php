@@ -27,19 +27,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
+Route::middleware([  'auth:sanctum', config('jetstream.auth_session'),
+ 'verified'])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('/auth/login');
     })->name('dashboard');
 });
 
-Route::prefix('admin')->group(function(){
+Route::prefix('admin')->group(function(){    
 
-    Route::get('dashbaord',[DashboardController::class,'index'])->name('maindashboard');
     //Routing for Product Section 
 
     Route::get('section/add',[SectionController::class,'addsection'])->name('add_section');
@@ -96,4 +92,9 @@ Route::prefix('admin')->group(function(){
     Route::get('inactive/brands/{brand_id}',[BrandController::class,'inactive'])->name('inactive_brands');
 
     
+});
+Route::group(['middleware'=>['admin']],function(){
+        
+    Route::get('dashbaorrd',[DashboardController::class,'index'])->name('maindashboard');
+
 });
