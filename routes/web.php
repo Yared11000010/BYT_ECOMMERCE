@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\GroupController;
@@ -30,12 +31,31 @@ Route::get('/', function () {
 Route::middleware([  'auth:sanctum', config('jetstream.auth_session'),
  'verified'])->group(function () {
     Route::get('/dashboard', function () {
-        return view('/auth/login');
+        return view('dashboard');
     })->name('dashboard');
 });
 
 Route::prefix('admin')->group(function(){    
 
+    //Routing for Admin
+    // Route::get('login',[AdminController::class,'login_page'])->name('admin_login');
+    // // Route::
+    // Route::post('adminlogin',[AdminController::class,'login'])->name('adminlogin');
+
+    Route::get('/login', [AdminController::class,'getLogin'])->name('adminLogin');
+    Route::post('/login', [AdminController::class, 'postLogin'])->name('adminLoginPost');
+ 
+    Route::group(['middleware' => 'adminauth'], function () {
+        Route::get('/', function () {
+            return view('welcome');
+        })->name('adminDashboard');
+ 
+    });
+
+
+    // Route::group(['middleware'=>['admin']],function(){
+    Route::get('dashboard',[DashboardController::class,'index'])->name('maindashboard');  
+    // });
     //Routing for Product Section 
 
     Route::get('section/add',[SectionController::class,'addsection'])->name('add_section');
@@ -90,11 +110,9 @@ Route::prefix('admin')->group(function(){
 
     Route::get('active/brands/{brand_id}',[BrandController::class,'active'])->name('active_brands');
     Route::get('inactive/brands/{brand_id}',[BrandController::class,'inactive'])->name('inactive_brands');
+    
+
 
     
 });
-Route::group(['middleware'=>['admin']],function(){
-        
-    Route::get('dashbaorrd',[DashboardController::class,'index'])->name('maindashboard');
 
-});
