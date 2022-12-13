@@ -34,11 +34,5 @@ class AdminController extends Controller
       }
   }
 
-  public function adminLogout(Request $request)
-  {
-      auth()->guard('admin')->logout();
-      Session::flush();
-      Session::put('success', 'You are logout sucessfully');
-      return redirect(route('adminLogin'));
-  }
+  
 }
